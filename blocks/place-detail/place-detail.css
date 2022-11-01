@@ -1,0 +1,9 @@
+.place-detail {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  margin: 25px 20px 32px 21px;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+}

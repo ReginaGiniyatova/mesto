@@ -7,6 +7,29 @@
     <title>Место</title>
   </head>
   <body class="page">
+    <div class="popup">
+      <div class="popup-container">
+        <button class="popup-container__close-btn"></button>
+        <form class="popup-container__edit-form">
+          <h3 class="popup-container__title">Редактировать профиль</h3>
+
+          <input
+            class="popup-container__username-field"
+            type="text"
+            placeholder="Как вас зовут?"
+          />
+          <input
+            class="popup-container__description-field"
+            type="text"
+            placeholder="Чем занимаетесь?"
+          />
+
+          <button class="popup-container__save-btn" type="submit">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
 
     <header class="header">
       <img class="header__logo" src="./images/header-logo.svg" />
@@ -110,5 +133,6 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
+    <script src="./js/popup-edit-info.js"></script>
   </body>
 </html>

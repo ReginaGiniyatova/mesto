@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./pages/index.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" >
+    <link rel="stylesheet" href="./pages/index.css" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>Место</title>
   </head>
   <body class="page">
     <div class="popup">
-      <div class="popup-container">
-        <button class="popup-container__close-btn"></button>
-        <form class="popup-container__edit-form">
-          <h3 class="popup-container__title">Редактировать профиль</h3>
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
 
-          <input
-            class="popup-container__username-field"
-            type="text"
-            placeholder="Как вас зовут?"
-          >
-          <input
-            class="popup-container__description-field"
-            type="text"
-            placeholder="Чем занимаетесь?"
-          >
+        <div class="popup__form">
+          <h3 class="popup__form-title">Редактировать профиль</h3>
 
-          <button class="popup-container__save-btn" type="submit">
-            Сохранить
-          </button>
-        </form>
+          <form class="edit-form">
+            <input
+              class="edit-form__input"
+              type="text"
+              name="edit-form_username"
+              placeholder="Как вас зовут?"
+            >
+            <input
+              class="edit-form__input"
+              type="text"
+              name="edit-form_description"
+              placeholder="Чем занимаетесь?"
+            >
+
+            <button class="edit-form__save-btn" type="submit">
+              Сохранить
+            </button>
+          </form>
+        </div>
       </div>
     </div>
 
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="логотип место">
+      <img class="header__logo" src="./images/header-logo.svg" alt="">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile-avatar.png" alt="аватарка пользователя">
+        <img class="profile__avatar" src="./images/profile-avatar.png" alt="">
         <div class="profile-info">
-          <div class="profile-container">
-            <h1 class="profile-container__username">Жак-Ив Кусто</h1>
-            <button class="profile-container__edit-button"></button>
+          <div class="profile-info__container">
+            <h1 class="profile-info__username">Жак-Ив Кусто</h1>
+            <button class="profile-info__edit-button" type="button"></button>
           </div>
           <p class="profile-info__user-description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
 
       <section class="places">
@@ -56,9 +61,9 @@
             alt="музей-памятник исаакиевский собор на исаакиевской площади"
           >
 
-          <div class="place-detail">
-            <h2 class="place-detail__title">Исаакиевский собор</h2>
-            <button class="place-detail__like-btn"></button>
+          <div class="place__detail">
+            <h2 class="place__title">Исаакиевский собор</h2>
+            <button class="place__like-btn" type="button"></button>
           </div>
         </article>
 
@@ -69,9 +74,9 @@
             alt="казанский кафедральный собор на казанской площади"
           >
 
-          <div class="place-detail">
-            <h2 class="place-detail__title">Казанский собор</h2>
-            <button class="place-detail__like-btn"></button>
+          <div class="place__detail">
+            <h2 class="place__title">Казанский собор</h2>
+            <button class="place__like-btn" type="button"></button>
           </div>
         </article>
 
@@ -82,9 +87,9 @@
             alt="скульптура алтанта на миллионной улице"
           >
 
-          <div class="place-detail">
-            <h2 class="place-detail__title">Атлант</h2>
-            <button class="place-detail__like-btn"></button>
+          <div class="place__detail">
+            <h2 class="place__title">Атлант</h2>
+            <button class="place__like-btn" type="button"></button>
           </div>
         </article>
 
@@ -95,9 +100,9 @@
             alt="храм спаса на крови на набережной канала грибоедова"
           >
 
-          <div class="place-detail">
-            <h2 class="place-detail__title">Спас на Крови</h2>
-            <button class="place-detail__like-btn"></button>
+          <div class="place__detail">
+            <h2 class="place__title">Спас на Крови</h2>
+            <button class="place__like-btn" type="button"></button>
           </div>
         </article>
 
@@ -105,12 +110,11 @@
           <img
             class="place__image"
             src="./images/place-dvorcovaya.jpg"
-            alt="триумфальная арка на дворцовой площади"
-          >
+            alt="триумфальная арка на дворцовой площади">
 
-          <div class="place-detail">
-            <h2 class="place-detail__title">Триумфальная арка</h2>
-            <button class="place-detail__like-btn"></button>
+          <div class="place__detail">
+            <h2 class="place__title">Триумфальная арка</h2>
+            <button class="place__like-btn" type="button"></button>
           </div>
         </article>
 
@@ -118,12 +122,11 @@
           <img
             class="place__image"
             src="./images/place-statue.jpg"
-            alt="памятник князю барклаю-де-толли"
-          >
+            alt="памятник князю барклаю-де-толли">
 
-          <div class="place-detail">
-            <h2 class="place-detail__title">Барклай-де-Толли</h2>
-            <button class="place-detail__like-btn"></button>
+          <div class="place__detail">
+            <h2 class="place__title">Барклай-де-Толли</h2>
+            <button class="place__like-btn" type="button"></button>
           </div>
         </article>
       </section>
@@ -133,6 +136,6 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <script src="./js/popup-edit-info.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

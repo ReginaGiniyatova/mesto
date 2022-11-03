@@ -2,7 +2,7 @@ let popup = document.querySelector('.popup');
 let formUsernameField = document.querySelector('input[name="edit-form_username"]');
 let formDescriptionField = document.querySelector('input[name="edit-form_description"]');
 let popupCloseBtn = document.querySelector('.popup__close-btn');
-let popupSaveBtn = document.querySelector('.edit-form__save-btn');
+let form = document.querySelector('form[name="edit-form"]');
 
 let profileUsername = document.querySelector('.profile-info__username');
 let profileDescription = document.querySelector('.profile-info__user-description');
@@ -31,7 +31,7 @@ profileEditBtn.addEventListener('click', function() {
 
 popupCloseBtn.addEventListener('click', function() { togglePopup(popup); });
 
-popupSaveBtn.addEventListener('click', function(event) {
+form.addEventListener('submit', function(event) {
   handleSaveClick(event, formUsernameField.value, formDescriptionField.value);
   togglePopup(popup);
 })

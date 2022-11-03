@@ -1,5 +1,9 @@
 .edit-form__save-btn {
-  margin: 18px 36px 0 36px;
+  margin: 0;
+  margin-top: 24px;
+  margin-right: 36px;
+  margin-bottom: 36px;
+  margin-left: 36px;
   height: 50px;
   border-radius: 2px;
   background-color: rgba(0, 0, 0, 1);
@@ -9,7 +13,8 @@
   line-height: 22px;
   text-align: center;
   color: #FFFFFF;
-
+  border: 0;
+  cursor: pointer;
   transition: background-color .3s ease-in-out;
 }
 
@@ -19,9 +24,10 @@
 
 @media screen and (min-width: 320px) and (max-width: 430px) {
   .edit-form__save-btn {
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 22px;
     margin-right: 22px;
+    margin-bottom: 0;
     height: 46px;
     font-size: 14px;
     line-height: 17px;

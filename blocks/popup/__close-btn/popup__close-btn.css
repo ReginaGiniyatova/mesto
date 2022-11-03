@@ -16,14 +16,13 @@
 
 @media screen and (max-width: 500px) {
   .popup__close-btn {
-    margin-right: 0;
+    margin-right: -6px;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 430px) {
   .popup__close-btn {
-    width: 20px;
-    height: 20px;
+    background-size: 20px;
   }
 }
 

@@ -7,7 +7,7 @@
     <title>Место</title>
   </head>
   <body class="page">
-    <div class="popup">
+    <div class="popup" id="popup-edit">
       <div class="popup__container">
         <button class="popup__close-btn" type="button"></button>
 
@@ -28,11 +28,48 @@
               placeholder="Чем занимаетесь?"
             >
 
-            <button class="edit-form__save-btn" type="submit">
+            <button class="edit-form__save-btn" aria-label="сохранить" type="submit">
               Сохранить
             </button>
           </form>
         </div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-add">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+
+        <div class="popup__form">
+          <h3 class="popup__form-title">Новое место</h3>
+
+          <form class="edit-form" name="add-form">
+            <input
+              class="edit-form__input"
+              type="text"
+              name="edit-form_name"
+              placeholder="Что за место добавляем?"
+            >
+            <input
+              class="edit-form__input"
+              type="text"
+              name="edit-form_link"
+              placeholder="Ссылка на фотографию"
+            >
+
+            <button class="edit-form__save-btn" aria-label="добавить" type="submit">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-photo-view">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+        <img class="popup__image" src="" alt="изображение">
+        <h3 class="popup__label"></h3>
       </div>
     </div>
 
@@ -46,89 +83,25 @@
         <div class="profile-info">
           <div class="profile-info__container">
             <h1 class="profile-info__username">Жак-Ив Кусто</h1>
-            <button class="profile-info__edit-button" type="button"></button>
+            <button class="profile-info__edit-button" aria-label="открыть форму редактирования профиля" type="button"></button>
           </div>
           <p class="profile-info__user-description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button" aria-label="открыть форму добавления карточки" type="button"></button>
       </section>
 
       <section class="places">
-        <article class="place">
-          <img
-            class="place__image"
-            src="./images/place-isaac.jpg"
-            alt="музей-памятник исаакиевский собор на исаакиевской площади"
-          >
+        <template id="place">
+          <article class="place">
+            <img class="place__image">
+            <button class="place__delete-btn" aria-label="удалить карточку" type="button"></button>
 
-          <div class="place__detail">
-            <h2 class="place__title">Исаакиевский собор</h2>
-            <button class="place__like-btn" type="button"></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <img
-            class="place__image"
-            src="./images/place-kazanskiy.jpg"
-            alt="казанский кафедральный собор на казанской площади"
-          >
-
-          <div class="place__detail">
-            <h2 class="place__title">Казанский собор</h2>
-            <button class="place__like-btn" type="button"></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <img
-            class="place__image"
-            src="./images/place-atlant.jpg"
-            alt="скульптура алтанта на миллионной улице"
-          >
-
-          <div class="place__detail">
-            <h2 class="place__title">Атлант</h2>
-            <button class="place__like-btn" type="button"></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <img
-            class="place__image"
-            src="./images/place-spas-na-krovi.jpg"
-            alt="храм спаса на крови на набережной канала грибоедова"
-          >
-
-          <div class="place__detail">
-            <h2 class="place__title">Спас на Крови</h2>
-            <button class="place__like-btn" type="button"></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <img
-            class="place__image"
-            src="./images/place-dvorcovaya.jpg"
-            alt="триумфальная арка на дворцовой площади">
-
-          <div class="place__detail">
-            <h2 class="place__title">Триумфальная арка</h2>
-            <button class="place__like-btn" type="button"></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <img
-            class="place__image"
-            src="./images/place-statue.jpg"
-            alt="памятник князю барклаю-де-толли">
-
-          <div class="place__detail">
-            <h2 class="place__title">Барклай-де-Толли</h2>
-            <button class="place__like-btn" type="button"></button>
-          </div>
-        </article>
+            <div class="place__detail">
+              <h2 class="place__title"></h2>
+              <button class="place__like-btn" aria-label="поставить лайк" type="button"></button>
+            </div>
+          </article>
+        </template>
       </section>
     </main>
 

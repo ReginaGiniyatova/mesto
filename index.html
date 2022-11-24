@@ -14,19 +14,29 @@
         <div class="popup__form">
           <h3 class="popup__form-title">Редактировать профиль</h3>
 
-          <form class="edit-form" name="edit-form">
+          <form class="edit-form" name="edit-form" novalidate>
             <input
+              id="username-input"
               class="edit-form__input"
               type="text"
               name="edit-form_username"
+              minlength="2"
+              maxlength="40"
               placeholder="Как вас зовут?"
+              required
             >
+            <span class="username-input-error edit-form__error"></span>
             <input
+              id="profession-input"
               class="edit-form__input"
               type="text"
               name="edit-form_description"
+              minlength="2"
+              maxlength="200"
               placeholder="Чем занимаетесь?"
+              required
             >
+            <span class="profession-input-error edit-form__error"></span>
 
             <button class="edit-form__save-btn" aria-label="сохранить" type="submit">
               Сохранить
@@ -43,21 +53,30 @@
         <div class="popup__form">
           <h3 class="popup__form-title">Новое место</h3>
 
-          <form class="edit-form" name="add-form">
+          <form class="edit-form" name="add-form" novalidate>
             <input
+              id="place-input"
               class="edit-form__input"
               type="text"
               name="edit-form_name"
+              minlength="2"
+              maxlength="30"
               placeholder="Что за место добавляем?"
+              required
             >
+            <span class="place-input-error edit-form__error"></span>
+
             <input
+              id="place-url-input"
               class="edit-form__input"
-              type="text"
+              type="url"
               name="edit-form_link"
               placeholder="Ссылка на фотографию"
+              required
             >
+            <span class="place-url-input-error edit-form__error"></span>
 
-            <button class="edit-form__save-btn" aria-label="добавить" type="submit">
+            <button class="edit-form__save-btn edit-form__save-btn_disabled" aria-label="добавить" type="submit" disabled>
               Сохранить
             </button>
           </form>
@@ -110,5 +129,6 @@
     </footer>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

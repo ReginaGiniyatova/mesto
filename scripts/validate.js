@@ -1,3 +1,18 @@
+const clearErrorsState = (popup) => {
+  const errorsList = Array.from(popup.querySelectorAll('.form__error'));
+  const inputsList = Array.from(popup.querySelectorAll('.form__input'));
+
+  errorsList.forEach(errorElement => {
+    if(errorElement.classList.contains('form__error_visible'))
+      errorElement.classList.remove('form__error_visible');
+  });
+
+  inputsList.forEach(inputElement => {
+    if(inputElement.classList.contains('form__input_type_error'))
+    inputElement.classList.remove('form__input_type_error');
+  });
+};
+
 const hideErrorElement = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
@@ -52,11 +67,4 @@ const enableValidation = config => {
   });
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.edit-form__input',
-  submitButtonSelector: '.edit-form__save-btn',
-  inactiveButtonClass: 'edit-form__save-btn_disabled',
-  inputErrorClass: 'edit-form__input_type_error',
-  errorClass: 'edit-form__error_visible'
-});
+enableValidation(validationConfig);

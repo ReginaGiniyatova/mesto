@@ -1,4 +1,4 @@
-.edit-form__save-btn {
+.form__save-btn {
   margin: 0;
   margin-top: 24px;
   margin-right: 36px;
@@ -18,12 +18,12 @@
   transition: background-color .3s ease-in-out;
 }
 
-.edit-form__save-btn:hover {
+.form__save-btn:hover {
   background-color: rgba(0, 0, 0, .8);
 }
 
 @media screen and (min-width: 320px) and (max-width: 430px) {
-  .edit-form__save-btn {
+  .form__save-btn {
     margin-top: 20px;
     margin-left: 22px;
     margin-right: 22px;

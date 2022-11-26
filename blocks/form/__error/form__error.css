@@ -1,14 +1,14 @@
-.edit-form__error {
+.form__error {
   visibility: hidden;
   margin: 0;
   padding: 0;
   margin-left: 36px;
   margin-right: 36px;
   margin-top: 4px;
-  margin-bottom: 13px;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  height: 32px;
   color: #FF0000;
 }

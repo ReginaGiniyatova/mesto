@@ -1,11 +1,11 @@
-.edit-form {
+.form {
   display: flex;
   flex-direction: column;
   min-width: 430px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 429px) {
-  .edit-form {
+  .form {
     min-width: 282px;
   }
 }

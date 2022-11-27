@@ -19,6 +19,7 @@ const openPopup = popup => {
 const closePopup = popup => {
   popup.classList.remove('popup_opened');
 
+  removePopupCloseOnClickListener(popup);
   removePopupCloseOnEscListener();
 };
 
@@ -128,14 +129,15 @@ formAddCard.addEventListener('submit', event => {
   event.preventDefault();
 })
 
-const registerPopupCloseOnClickListener = popup => popup.addEventListener('click', handleCloseClickEvent);
-
 const handleCloseClickEvent = (event) => {
   const popup = event.target.closest('.popup');
 
   if(event.target.classList.contains('popup__close-btn') || event.target.classList.contains('popup'))
   closePopup(popup);
 }
+
+const registerPopupCloseOnClickListener = popup => popup.addEventListener('click', handleCloseClickEvent);
+const removePopupCloseOnClickListener = popup => popup.addEventListener('click', handleCloseClickEvent);
 
 const handleKeyboardEvent = (event, popup) => {
   if(event.code === 'Escape')

@@ -1,3 +1,6 @@
+import { Card, initialCards } from './Card.js';
+import { FormValidator } from './formValidator.js';
+
 const popupCloseElementList = document.querySelectorAll('.popup__close-btn');
 const popupEditInfo = document.querySelector('#popup-edit');
 const formEditInfo = document.querySelector('form[name="edit-form"]');
@@ -56,20 +59,11 @@ function initCards() {
 }
 
 function createCard(item) {
-  const placeElement = placeTemplate.querySelector('.place').cloneNode(true);
-  const placeImageElement = placeElement.querySelector('.place__image');
-
-  placeImageElement.setAttribute("src", item.link);
-  placeImageElement.setAttribute("alt", item.alt);
-  placeImageElement.addEventListener('click', () => { showPopupImage(item.name, item.link, item.alt); });
-  placeElement.querySelector('.place__title').textContent = item.name;
-  placeElement.querySelector('.place__like-btn').addEventListener('click', toggleCardLike);
-  placeElement.querySelector('.place__delete-btn').addEventListener('click', removeCard);
-
-  return placeElement;
+  const card = new Card(item, '#place');
+  return card.createCard();
 }
 
-function toggleCardLike(event) {
+export function toggleCardLike(event) {
   const target = event.target;
   target.classList.toggle('place__like-btn_active');
 }
@@ -84,12 +78,12 @@ function addNewCard(name, link, alt) {
   placesElement.prepend(createCard(item));
 }
 
-function removeCard(event) {
+export function removeCard(event) {
   const parent = event.target.closest('.place');
   parent.remove();
 }
 
-function showPopupImage(name, link, alt) {
+export function showPopupImage(name, link, alt) {
   openPopup(popupImageView);
 
   image.setAttribute("src", link);
@@ -101,7 +95,6 @@ function showPopupImage(name, link, alt) {
 profileEditInfoBtn.addEventListener('click', () => {
   clearErrorsState(popupEditInfo);
   fillEditInfoDefaultValues();
-  enableSubmitButton(popupEditInfo, validationConfig);
 
   openPopup(popupEditInfo);
 });
@@ -109,7 +102,6 @@ profileEditInfoBtn.addEventListener('click', () => {
 
 profileAddCardBtn.addEventListener('click', () => {
   clearErrorsState(popupAddCard);
-  disableSubmitButton(popupAddCard, validationConfig);
   formAddCard.reset();
 
   openPopup(popupAddCard);
@@ -129,6 +121,21 @@ formAddCard.addEventListener('submit', event => {
   event.preventDefault();
 })
 
+const clearErrorsState = (popup) => {
+  const errorsList = Array.from(popup.querySelectorAll('.form__error'));
+  const inputsList = Array.from(popup.querySelectorAll('.form__input'));
+
+  errorsList.forEach(errorElement => {
+    if(errorElement.classList.contains('form__error_visible'))
+      errorElement.classList.remove('form__error_visible');
+  });
+
+  inputsList.forEach(inputElement => {
+    if(inputElement.classList.contains('form__input_type_error'))
+    inputElement.classList.remove('form__input_type_error');
+  });
+};
+
 const handleCloseClickEvent = (event) => {
   const popup = event.target.closest('.popup');
 
@@ -147,4 +154,22 @@ const handleKeyboardEvent = (event, popup) => {
 const registerPopupCloseOnEscListener = (popup) => document.addEventListener('keydown', event => handleKeyboardEvent(event, popup));
 const removePopupCloseOnEscListener = () => document.removeEventListener('keydown', handleKeyboardEvent);
 
+const enableValidation = () => {
+  const validationConfig = {
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__save-btn',
+    inactiveButtonClass: 'form__save-btn_disabled',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'form__error_visible'
+  };
+
+  const editFormValidator = new FormValidator(validationConfig, '#popup-edit .popup__form');
+  editFormValidator.enableValidation();
+
+  const addFormValidation = new FormValidator(validationConfig, '#popup-add .popup__form');
+  addFormValidation.enableValidation();
+}
+
 initCards();
+enableValidation();
+

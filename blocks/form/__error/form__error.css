@@ -12,3 +12,10 @@
   height: 32px;
   color: #FF0000;
 }
+
+@media screen and (max-width: 430px) {
+  .form__error {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}

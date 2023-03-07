@@ -33,6 +33,7 @@
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__label/popup__label.css);
+@import url(../blocks/popup/_dark_overlay/popup_dark_overlay.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);

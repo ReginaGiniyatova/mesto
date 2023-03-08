@@ -8,43 +8,40 @@ export class FormValidator {
     this._buttonSubmit = this._formElement.querySelector(this._config.submitButtonSelector);
   }
 
-  _hideErrorElement(errorElement, inputElement, config) {
-    inputElement.classList.remove(config.inputErrorClass);
-    errorElement.classList.remove(config.errorClass);
+  _hideErrorElement(errorElement, inputElement) {
+    inputElement.classList.remove(this._config.inputErrorClass);
+    errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = '';
   }
 
-  _showErrorElement(errorElement, inputElement, config) {
-    inputElement.classList.add(config.inputErrorClass);
-    errorElement.classList.add(config.errorClass);
+  _showErrorElement(errorElement, inputElement) {
+    inputElement.classList.add(this._config.inputErrorClass);
+    errorElement.classList.add(this._config.errorClass);
     errorElement.textContent = inputElement.validationMessage;
   }
 
   _isInputValid = (inputElement) => inputElement.validity.valid;
   _isEveryInputValid = () => Array.from(this._inputList).every(input => input.validity.valid);
 
-  _disableSubmitButton(config) {
-    this._buttonSubmit.classList.add(config.inactiveButtonClass);
+  _disableSubmitButton() {
+    this._buttonSubmit.classList.add(this._config.inactiveButtonClass);
     this._buttonSubmit.setAttribute('disabled', '');
   }
 
-  _enableSubmitButton(config) {
-    this._buttonSubmit.classList.remove(config.inactiveButtonClass);
+  _enableSubmitButton() {
+    this._buttonSubmit.classList.remove(this._config.inactiveButtonClass);
     this._buttonSubmit.removeAttribute('disabled');
   }
 
   _setSubmitState() {
-    if(this._isEveryInputValid()) this._enableSubmitButton(this._config);
-    else this._disableSubmitButton(this._config);
+    if(this._isEveryInputValid()) this._enableSubmitButton();
+    else this._disableSubmitButton();
   }
 
-  _clearErrorsState(popup) {
+  _clearErrorsState() {
     this._inputList.forEach(inputElement => {
       const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-      if(errorElement.classList.contains('form__error_visible'))
-        errorElement.classList.remove('form__error_visible');
-      if(inputElement.classList.contains('form__input_type_error'))
-        inputElement.classList.remove('form__input_type_error');
+      this._hideErrorElement(errorElement, inputElement);
     });
   }
 
@@ -52,20 +49,19 @@ export class FormValidator {
     inputElement.addEventListener('input', () => {
       const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
 
-      if(this._isInputValid(inputElement)) this._hideErrorElement(errorElement, inputElement, this._config);
-      else this._showErrorElement(errorElement, inputElement, this._config);
+      if(this._isInputValid(inputElement)) this._hideErrorElement(errorElement, inputElement);
+      else this._showErrorElement(errorElement, inputElement);
 
       this._setSubmitState();
     });
   }
 
-  reset() {
+  resetValidation() {
     this._clearErrorsState();
     this._setSubmitState();
   }
 
   enableValidation() {
-     this.reset();
      this._inputList.forEach(inputElement => this._setEventListener(inputElement));
   }
 }

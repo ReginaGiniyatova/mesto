@@ -12,8 +12,15 @@ const popupImageView = document.querySelector('#popup-photo-view');
 const profileEditInfoBtn = document.querySelector('.profile-info__edit-button');
 const profileAddCardBtn = document.querySelector('.profile__add-button');
 
-const openPopup = popup => popup.classList.add('popup_opened');
-const closePopup = popup => popup.classList.remove('popup_opened');
+const openPopup = popup => {
+  popup.classList.add('popup_opened');
+  registerPopupCloseOnEscListener();
+}
+
+const closePopup = popup => {
+  popup.classList.remove('popup_opened');
+  registerPopupCloseOnEscListener();
+}
 
 const formUsernameField = document.querySelector('input[name="edit-form_username"]');
 const formDescriptionField = document.querySelector('input[name="edit-form_description"]');
@@ -116,56 +123,54 @@ const handleCloseClickEvent = (event) => {
 const registerPopupCloseOnClickListener = popup => popup.addEventListener('click', handleCloseClickEvent);
 
 const handleKeyboardEvent = (event) => {
+  if(event.code === 'Escape') {
   const popup = document.querySelector('.popup_opened');
-
-  if(popup && event.code === 'Escape')
     closePopup(popup);
+  }
 };
 
 const registerPopupCloseOnEscListener = () => document.addEventListener('keydown', handleKeyboardEvent);
+const removePopupCloseOnEscListener = () => document.removeEventListener('keydown', handleKeyboardEvent);
 
 const enableValidation = () => {
   editFormValidator.enableValidation();
   addFormValidation.enableValidation();
 }
 
-const setEventsListeners = () => {
-  profileEditInfoBtn.addEventListener('click', () => {
-    fillEditInfoDefaultValues();
-    editFormValidator.reset();
-    openPopup(popupEditInfo);
-  });
-
-  profileAddCardBtn.addEventListener('click', () => {
-    formAddCard.reset();
-    addFormValidation.reset();
-    openPopup(popupAddCard);
-  });
-
-  formEditInfo.addEventListener('submit', function(event) {
-    handleEditInfoSaveClick();
-    closePopup(popupEditInfo);
-
-    event.preventDefault();
-  });
-
-  formAddCard.addEventListener('submit', event => {
-    addNewCard(formAddNameField.value, formAddLinkField.value, formAddNameField.value);
-
-    formAddCard.reset();
-    closePopup(popupAddCard);
-
-    event.preventDefault();
-  });
-
-  registerPopupCloseOnClickListener(popupImageView);
-  registerPopupCloseOnClickListener(popupEditInfo);
-  registerPopupCloseOnClickListener(popupAddCard);
-  registerPopupCloseOnEscListener();
-}
-
 initCards();
-setEventsListeners();
+
+profileEditInfoBtn.addEventListener('click', () => {
+  fillEditInfoDefaultValues();
+  editFormValidator.resetValidation();
+  openPopup(popupEditInfo);
+});
+
+profileAddCardBtn.addEventListener('click', () => {
+  formAddCard.reset();
+  addFormValidation.resetValidation();
+  openPopup(popupAddCard);
+});
+
+formEditInfo.addEventListener('submit', function(event) {
+  handleEditInfoSaveClick();
+  closePopup(popupEditInfo);
+
+  event.preventDefault();
+});
+
+formAddCard.addEventListener('submit', event => {
+  addNewCard(formAddNameField.value, formAddLinkField.value, formAddNameField.value);
+
+  formAddCard.reset();
+  closePopup(popupAddCard);
+
+  event.preventDefault();
+});
+
+registerPopupCloseOnClickListener(popupImageView);
+registerPopupCloseOnClickListener(popupEditInfo);
+registerPopupCloseOnClickListener(popupAddCard);
+
 enableValidation();
 
 

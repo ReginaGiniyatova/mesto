@@ -5,6 +5,15 @@ import PopupWithImage from './PopupWithImage.js';
 import Section from './Section.js';
 import UserInfo from './UserInfo.js';
 
+import placeIsaac from '../images/place-isaac.jpg';
+import placeKazanskiy from '../images/place-kazanskiy.jpg';
+import placeAtlant from '../images/place-atlant.jpg';
+import placeSpasNaKrovi from '../images/place-spas-na-krovi.jpg';
+import placeDvorcovaya from '../images/place-dvorcovaya.jpg';
+import placeStatue from '../images/place-statue.jpg';
+
+import '../pages/index.css';
+
 
 const editInfoPopup = new PopupWithForm('#popup-edit', values => {
   userInfo.setUserInfo(values);
@@ -45,27 +54,27 @@ const addFormValidation = new FormValidator(validationConfig, '#popup-add .popup
 const initialCards = [
   {
     name: 'Исаакиевский собор',
-    link: './images/place-isaac.jpg'
+    link: placeIsaac
   },
   {
     name: 'Казанский собор',
-    link: './images/place-kazanskiy.jpg'
+    link: placeKazanskiy
   },
   {
     name: 'Атлант',
-    link: './images/place-atlant.jpg'
+    link: placeAtlant
   },
   {
     name: 'Спас на Крови',
-    link: './images/place-spas-na-krovi.jpg'
+    link: placeSpasNaKrovi
   },
   {
     name: 'Триумфальная арка',
-    link: './images/place-dvorcovaya.jpg'
+    link: placeDvorcovaya
   },
   {
     name: 'Барклай-де-Толли',
-    link: './images/place-statue.jpg'
+    link: placeStatue
   }
 ];
 

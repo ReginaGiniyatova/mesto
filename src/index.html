@@ -76,6 +76,49 @@
             <span class="place-url-input-error form__error"></span>
 
             <button class="form__save-btn form__save-btn_disabled" aria-label="добавить" type="submit" disabled>
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-remove">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+
+        <div class="popup__form">
+          <h3 class="popup__form-title">Вы уверены?</h3>
+
+          <form class="form" name="remove-form" novalidate>
+            <button class="form__save-btn" aria-label="удалить" type="submit">
+              Да
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-avatar">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+
+        <div class="popup__form">
+          <h3 class="popup__form-title">Обновить аватар</h3>
+
+          <form class="form" name="avatar-form" novalidate>
+
+            <input
+              id="avatar-url-input"
+              class="form__input"
+              type="url"
+              name="link"
+              placeholder="Ссылка на изображение"
+              required
+            >
+            <span class="avatar-url-input-error form__error"></span>
+
+            <button class="form__save-btn form__save-btn_disabled" aria-label="сохранить" type="submit" disabled>
               Сохранить
             </button>
           </form>
@@ -97,13 +140,15 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile-avatar.png')%>" alt="аватарка пользователя">
+        <a class="profile__avatar-cover">
+          <img class="profile__avatar" alt="аватарка пользователя">
+        </a>
         <div class="profile-info">
           <div class="profile-info__container">
-            <h1 class="profile-info__username">Жак-Ив Кусто</h1>
+            <h1 class="profile-info__username"></h1>
             <button class="profile-info__edit-button" aria-label="открыть форму редактирования профиля" type="button"></button>
           </div>
-          <p class="profile-info__user-description">Исследователь океана</p>
+          <p class="profile-info__user-description"></p>
         </div>
         <button class="profile__add-button" aria-label="открыть форму добавления карточки" type="button"></button>
       </section>
@@ -116,7 +161,10 @@
 
             <div class="place__detail">
               <h2 class="place__title"></h2>
-              <button class="place__like-btn" aria-label="поставить лайк" type="button"></button>
+              <div class="place__like-container">
+                <button class="place__like-btn" aria-label="поставить лайк" type="button"></button>
+                <p class="place__like-count">0</p>
+              </div>
             </div>
           </article>
         </template>

@@ -1,7 +1,13 @@
 export default class UserInfo {
-  constructor(usernameSelector, descriptionSelector) {
+  constructor(usernameSelector, descriptionSelector, avatarSelector, onAvatarClick) {
     this._usernameElement = document.querySelector(usernameSelector);
     this._descriptionElement = document.querySelector(descriptionSelector);
+    this._avatarElement = document.querySelector(avatarSelector);
+    this._onAvatarClickCallback = onAvatarClick;
+  }
+
+  setEventListener() {
+    this._avatarElement.parentNode.addEventListener('click', () => this._onAvatarClickCallback());
   }
 
   getUserInfo() {
@@ -11,8 +17,17 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo({ username, description }) {
-      this._usernameElement.textContent = username;
-      this._descriptionElement.textContent = description;
+  setUserInfo(info) {
+      this._info = info;
+      this._usernameElement.textContent = info.name;
+      this._descriptionElement.textContent = info.about;
+    }
+
+    setUserAvatar(avatarUrl){
+      this._avatarElement.src = avatarUrl;
+    }
+
+    getUserInfoId() {
+      return this._info._id;
     }
 }

@@ -18,6 +18,7 @@ const apiClient = new Api({
   }
 });
 
+const formValidators = {};
 
 const editInfoPopup = new PopupWithForm('#popup-edit', values => {
   editInfoPopup.updateSubmitText('async');
@@ -63,10 +64,6 @@ const userInfo = new UserInfo('.profile-info__username', '.profile-info__user-de
 
 const popupWithImage = new PopupWithImage('#popup-photo-view');
 popupWithImage.setEventListeners();
-
-const editFormValidator = new FormValidator(validationConfig, '#popup-edit .popup__form');
-const addFormValidation = new FormValidator(validationConfig, '#popup-add .popup__form');
-const avatarFormValidator = new FormValidator(validationConfig, '#popup-avatar .popup__form');
 
 const cardSectionList = new Section( { items: [], renderer: addNewCard }, '.places');
 
@@ -129,28 +126,32 @@ function onLikeCallback(card) {
 }
 
 function onAvatarClick() {
+  formValidators['avatar-form'].resetValidation();
   avatarPopup.open();
 }
 
-const enableValidation = () => {
-  editFormValidator.enableValidation();
-  addFormValidation.enableValidation();
-  avatarFormValidator.enableValidation();
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
 
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
 }
 
 profileEditInfoBtn.addEventListener('click', () => {
   editInfoPopup.setInputValues(userInfo.getUserInfo());
-  editFormValidator.resetValidation();
+  formValidators['edit-form'].resetValidation();
   editInfoPopup.open();
 });
 
 profileAddCardBtn.addEventListener('click', () => {
-  addFormValidation.resetValidation();
+  formValidators['add-form'].resetValidation();
   addCardPopup.open();
 });
-
-enableValidation();
 
 Promise.all([apiClient.getUserInfo(), apiClient.getInitialCards()])
   .then(([userData, cardsData]) => {
@@ -160,3 +161,5 @@ Promise.all([apiClient.getUserInfo(), apiClient.getInitialCards()])
     cardSectionList.renderItems(cardsData);
   })
   .catch(error => console.log(error));
+
+  enableValidation(validationConfig);

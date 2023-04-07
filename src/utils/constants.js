@@ -1,5 +1,6 @@
 
 const validationConfig = {
+  formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__save-btn',
   inactiveButtonClass: 'form__save-btn_disabled',

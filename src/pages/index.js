@@ -59,8 +59,7 @@ addCardPopup.setSubmitTextStates({
 const profileEditInfoBtn = document.querySelector('.profile-info__edit-button');
 const profileAddCardBtn = document.querySelector('.profile__add-button');
 
-const userInfo = new UserInfo('.profile-info__username', '.profile-info__user-description', '.profile__avatar', onAvatarClick);
-userInfo.setEventListener();
+const userInfo = new UserInfo('.profile-info__username', '.profile-info__user-description', '.profile__avatar');
 
 const popupWithImage = new PopupWithImage('#popup-photo-view');
 popupWithImage.setEventListeners();
@@ -70,6 +69,9 @@ const addFormValidation = new FormValidator(validationConfig, '#popup-add .popup
 const avatarFormValidator = new FormValidator(validationConfig, '#popup-avatar .popup__form');
 
 const cardSectionList = new Section( { items: [], renderer: addNewCard }, '.places');
+
+const avatarElement = document.querySelector('.profile__avatar-cover');
+avatarElement.addEventListener('click', onAvatarClick);
 
 const removePopup = new PopupWithConfirmation('#popup-remove', (card) => {
   apiClient.deleteCard(card.getCardId())
@@ -137,8 +139,6 @@ const enableValidation = () => {
 
 }
 
-cardSectionList.renderItems();
-
 profileEditInfoBtn.addEventListener('click', () => {
   editInfoPopup.setInputValues(userInfo.getUserInfo());
   editFormValidator.resetValidation();
@@ -153,13 +153,10 @@ profileAddCardBtn.addEventListener('click', () => {
 enableValidation();
 
 Promise.all([apiClient.getUserInfo(), apiClient.getInitialCards()])
-  .then(results => {
-    const userData = results[0];
-    const cardsData = results[1];
-
+  .then(([userData, cardsData]) => {
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData.avatar);
 
-    cardsData.forEach(card => cardSectionList.addItem(createCard(card)));
+    cardSectionList.renderItems(cardsData);
   })
   .catch(error => console.log(error));
